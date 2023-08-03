@@ -1,3 +1,3 @@
-# Bulletin Board 1
+# bulletin-board-1
 
-[Notes for this project are here.](https://learn.firstdraft.com/lessons/134)
+Target: https://bulletin-board-1.matchthetarget.com/
