@@ -128,37 +128,6 @@ describe "/boards/[ID]" do
 end
 
 describe "/boards/[ID]" do
-  it "lists the titles of each Post record in the database", points: 1 do
-    
-    board_chi = Board.new
-    board_chi.name = "Chicago"
-    board_chi.save
-
-    post_1 = Post.new
-    post_1.title = "Guitar lessons"
-    post_1.body = "Learn with me"
-    post_1.expires_on = Date.today + 7.days
-    post_1.board_id = board_chi.id
-    post_1.save
-
-    post_2 = Post.new
-    post_2.title = "Scuba lessons"
-    post_2.body = "Swim with me"
-    post_2.expires_on = Date.today + 7.days
-    post_2.board_id = board_chi.id
-    post_2.save
-    
-    visit "/boards/#{board_chi.id}"
-
-    expect(page).to have_text(post_1.title),
-      "Expected page to have the title, '#{post_1.title}'"
-    
-    expect(page).to have_text(post_2.title),
-      "Expected page to have the title, '#{post_2.title}'"
-  end
-end
-
-describe "/boards/[ID]" do
   it "has a form", points: 2 do
 
     board_chi = Board.new
