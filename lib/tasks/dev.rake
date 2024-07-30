@@ -1,5 +1,6 @@
 desc "Fill the database tables with some sample data"
 task({ :sample_data => :environment }) do
+  puts "Sample data task running"
   
   ActiveRecord::Base.connection.tables.each do |t|
     ActiveRecord::Base.connection.reset_pk_sequence!(t)
