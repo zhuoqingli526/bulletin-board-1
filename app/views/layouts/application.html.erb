@@ -11,7 +11,25 @@
   </head>
 
   <body>
-    <a href="/">Bulletin Board</a>
-    <%= yield %>
+  <a href="/">Bulletin Board</a>
+
+  <hr>
+
+  <% if notice.present? %>
+    <div>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert.present? %>
+    <div>
+      <%= alert %>
+    </div>
+  <% end %>
+    
+    <%= yield %>  <!-- 👈 在这里插入每个具体页面的内容 -->
+
+
+
   </body>
 </html>
