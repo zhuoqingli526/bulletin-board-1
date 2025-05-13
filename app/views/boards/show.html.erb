@@ -24,14 +24,11 @@
 
       <div>
         <label for="expire_date">Expires on</label>
-        <input type="date" id="expire_date" name="expires_on" >
+        <input type="date" id="expire_date" name="expires_on"  >
       </div>
 
 
-      <div>
-        <label for="id">Board ID</label>
-        <input type="integer" id="id" name="query_board_id" >
-      </div>
+        <input type="hidden" id="id" name="query_board_id" value=<%= @the_board.id %> >
 
 
       <button>
@@ -44,7 +41,7 @@
 <hr>
   <h2>Active posts</h2>
 
-  <% matching_posts = Post.where({ :board_id => @the_board.id}).order({ :expires_on => :asc }) %>
+  <% matching_posts = Post.where({ :board_id => @the_board.id}).where("expires_on >= ?", Date.today).order({ :expires_on => :asc }) %>
 
   <table border="1">
     <tr>
@@ -69,6 +66,7 @@
 
 
   <h2>Expired posts</h2>
+  <% matching_posts = Post.where({ :board_id => @the_board.id}).where("expires_on < ?", Date.today).order({ :expires_on => :asc }) %>
   <table border="1">
     <tr>
       <th>Title</th>
@@ -76,7 +74,15 @@
       <th>Posted on</th>
       <th>Expires on</th>
     </tr>
-      <tr>
 
-      </tr>
+  <% matching_posts.each do |a_post|%>
+    <tr>
+    <td><%= a_post.title%></td>
+    <td><%= a_post.body%></td>
+    <td><%= a_post.created_at.strftime("%b %e, %Y")%></td>
+    <td><%= a_post.expires_on.strftime("%b %e, %Y")%></td>
+   </tr>
+
+
+  <% end %>
   </table>
